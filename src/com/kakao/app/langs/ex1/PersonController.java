@@ -2,6 +2,8 @@ package com.kakao.app.langs.ex1;
 
 import java.util.Scanner;
 
+import javax.sound.sampled.TargetDataLine;
+
 public class PersonController {
 	
 	public void start() {
@@ -53,9 +55,32 @@ public class PersonController {
 			case 4 :
 				if(pi != null) {
 					//기존 배열 한칸 늘린 다음 학생 한명 추가하기
+					System.out.println("학생을 추가합니다. 학생 데이터를 입력하세요");
+					System.out.println("이름, 전화번호, 이메일, 생년월일,");
+
+					//띄어쓰기하면 이후 데이터 못 받음, 주의!
+					if(pi.getData() != null) {
+						pi.setData(pi.getData() + sc.next());
+					} else {
+						pi.setData(sc.next());
+					}
+					
+					pi.init();
 					break;
 				} else {
 					//배열 새로 만들어서 추가하기
+					pi = new PersonInfo();
+					System.out.println("학생이 없습니다. 학생 데이터를 입력하세요");
+					System.out.println("이름, 전화번호, 이메일, 생년월일,");
+					
+					 //띄어쓰기하면 이후 데이터 못 받음, 주의!				
+					if(pi.getData() != null) {
+						pi.setData(pi.getData() + sc.next());
+					} else {
+						pi.setData(sc.next());
+					}
+					
+					pi.init();
 					break;
 				}
 				
@@ -63,8 +88,11 @@ public class PersonController {
 			case 5 :
 				break;
 				
-			case 6 : 
-				break;
+			case 6 : 				
+				
+			default : 
+				System.out.println("프로그램을 종료합니다.");
+				flag = !flag;
 			}
 			
 		}
