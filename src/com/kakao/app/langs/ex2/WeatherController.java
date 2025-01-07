@@ -4,14 +4,12 @@ import java.util.Scanner;
 
 public class WeatherController {
 	
-	private StringBuffer buffer;
 	private WeatherInfo weatherInfo;
 	private WeatherView weatherView;
 	private Scanner sc;
 	
 		
 	public WeatherController () {
-		this.buffer = new StringBuffer();
 		this.weatherInfo = new WeatherInfo();
 		this.weatherView = new WeatherView();
 		this.sc = new Scanner(System.in);
@@ -30,7 +28,7 @@ public class WeatherController {
 			
 			int select = this.sc.nextInt();		
 			if (select == 1) {
-				dtos = weatherInfo.init();
+				dtos = weatherInfo.init(weatherInfo.getInfo());
 				
 			} else if (select == 2) {				
 				if (dtos != null) {
@@ -42,7 +40,7 @@ public class WeatherController {
 				
 			} else if (select == 3) {
 				if (dtos != null) {
-					System.out.println("검색할 도시명을 입력해주세요.");					
+					System.out.println("검색할 도시명을 입력해주세요.");			
 					weatherInfo.find(dtos, sc.next());
 					
 				} else {
@@ -52,12 +50,9 @@ public class WeatherController {
 			} else if (select == 4) {				
 				if (dtos != null) {
 					System.out.println("추가할 정보를 입력해주세요.");
-					
-					buffer.append(sc.next());
-					buffer = weatherInfo.getInfo().append(buffer);
-					weatherInfo.setInfo(buffer);
-					
-					dtos = weatherInfo.init(); //새로 만든 dtos객체로 초기화
+					System.out.println("띄어쓰기 없이 도시,기온,습도,날씨 형태로 입력");
+					System.out.println("ex) 서울,10,0.1,맑음");
+					dtos = weatherInfo.add(dtos, sc.next());
 					System.out.println("입력한 정보가 추가되었습니다.");
 					
 				} else {
