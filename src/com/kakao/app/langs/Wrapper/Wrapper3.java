@@ -33,7 +33,7 @@ public class Wrapper3 {
 			System.out.println(times);
 			
 			if(i != 6) {
-				newNumber = newNumber + (Integer.parseInt(Character.toString(number.charAt(i)))*times);
+				newNumber = newNumber + (Integer.parseInt(String.valueOf(number.charAt(i)))*times);
 				times++;
 			}
 			
@@ -53,7 +53,7 @@ public class Wrapper3 {
 			newNumber = newNumber % 10;
 		}
 		
-		// 결과 값이 number의 끝자리와 일치하는지 확인한다
+		// 결과 값이 number의 끝자리와 일치하는지 확인한다		
 		if (newNumber == Integer.parseInt(""+number.charAt(number.length()-1))) {
 			System.out.println("검증 값과 마지막 숫자가 일치합니다");
 		} else {
