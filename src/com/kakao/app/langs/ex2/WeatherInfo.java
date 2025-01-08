@@ -19,6 +19,7 @@ public class WeatherInfo {
 	public WeatherDTO[] delete (WeatherDTO[] dtos, WeatherDTO[] newDtos) {
 				
 		int count = 0;
+		String forEqauls = newDtos[0].getCity();
 		//확인용 출력문
 		System.out.println("삭제용 뉴디티오 0번 도시 : " + newDtos[0].getCity());
 		System.out.println("디티오 길이 : " + dtos.length);
@@ -28,11 +29,14 @@ public class WeatherInfo {
 		for (int i = 0; i < dtos.length; i++) {
 			// 확인용 출력문
 			System.out.println("위쪽에서 new,getCity : " + newDtos[0].getCity());
+			// 확인용 출력문
+			System.out.println("위쪽에서 forEqauls 출력 : " + forEqauls);
 			
-			if(dtos[i].getCity().equals(newDtos[0].getCity())) {
+//			if(dtos[i].getCity().equals(newDtos[0].getCity())) { *** 기존 비교문 ***
+			if(dtos[i].getCity().equals(forEqauls)) {
 				
 				// 확인용 출력문
-				System.out.println(dtos[i].getCity().equals(newDtos[0].getCity()));
+				System.out.println(dtos[i].getCity().equals(newDtos[0].getCity()));				
 				count++;
 				// 확인용 출력문
 				System.out.println("if문 안의 i : " + i);
@@ -49,7 +53,7 @@ public class WeatherInfo {
 			System.out.println("count : " + count);
 			
 			// 확인용 출력문
-			System.out.println("새로 넣는 시티 : " + dtos[i].getCity());
+			System.out.println("새로 넣는 시티 : " + dtos[count].getCity());
 			dtos[i].setCity(dtos[count].getCity());			
 			dtos[i].setTemp(dtos[count].getTemp());
 			dtos[i].setHumidity(dtos[count].getHumidity());
