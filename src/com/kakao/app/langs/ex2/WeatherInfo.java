@@ -27,7 +27,7 @@ public class WeatherInfo {
 		
 		for (int i = 0; i < dtos.length; i++) {
 			// 확인용 출력문
-			System.out.println("위쪽 new,getCity : " + newDtos[0].getCity());
+			System.out.println("위쪽에서 new,getCity : " + newDtos[0].getCity());
 			
 			if(dtos[i].getCity().equals(newDtos[0].getCity())) {
 				
@@ -44,18 +44,20 @@ public class WeatherInfo {
 			}
 			
 			//확인용 출력문
-			System.out.println("아래쪽 new,getCity : " + newDtos[0].getCity());
+			System.out.println("중간에서 new,getCity : " + newDtos[0].getCity());
 			System.out.println("i : " + i);
 			System.out.println("count : " + count);
 			
-			dtos[i].setCity(dtos[count].getCity());
 			// 확인용 출력문
 			System.out.println("새로 넣는 시티 : " + dtos[i].getCity());
+			dtos[i].setCity(dtos[count].getCity());			
 			dtos[i].setTemp(dtos[count].getTemp());
 			dtos[i].setHumidity(dtos[count].getHumidity());
 			dtos[i].setStatus(dtos[count].getStatus());
 			
 			count++;
+			
+			System.out.println("바닥에서 new,getCity : " + newDtos[0].getCity());
 			
 		}
 		
