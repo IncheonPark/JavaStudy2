@@ -23,6 +23,7 @@ public class WeatherInfo {
 		strInfo = strInfo.replace('*', ',');
 		
 		StringTokenizer st = new StringTokenizer(strInfo, ",");
+		
 		String[] strInfos = new String[st.countTokens()];
 		
 		for (int i = 0; i < strInfos.length; i ++) {
