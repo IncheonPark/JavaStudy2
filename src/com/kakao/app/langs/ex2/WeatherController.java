@@ -30,7 +30,7 @@ public class WeatherController {
 			if (select == 1) {
 				dtos = weatherInfo.init(weatherInfo.getInfo());
 				
-			} else if (select == 2) {				
+			} else if (select == 2) {			
 				if (dtos != null) {
 					weatherView.view(dtos);
 					
@@ -61,7 +61,7 @@ public class WeatherController {
 				
 			} else if (select == 5) {				
 				if (dtos != null) {
-					System.out.println("검색할 도시명을 입력해주세요.");					
+					System.out.println("삭제할 도시명을 입력해주세요.");					
 					dtos = weatherInfo.delete(dtos, weatherInfo.find(dtos, sc.next()));
 					System.out.println("입력한 정보가 삭제되었습니다.");
 					

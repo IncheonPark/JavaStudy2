@@ -1,5 +1,7 @@
 package com.kakao.app.langs.ex2;
 
+import java.util.StringTokenizer;
+
 public class WeatherInfo {
 	
 	private StringBuffer info;	
@@ -9,15 +11,95 @@ public class WeatherInfo {
 		this.info = new StringBuffer();		
 		this.info.append("seoul, 10, 0.3, 맑음,");
 		this.info.append("일산, -12, 0.56, 흐림,");
-		this.info.append("인천* 32* 0.95* 무더위, ");
+		this.info.append("인천* 32* 0.95 * 무더위, ");
 		this.info.append("제주* 56* 0.02* 건조,");
+	}
+	
+	public WeatherDTO [] init(StringBuffer buffer) {
+		System.out.println(buffer);
+		
+		//버퍼를 String 토큰으로 만들기
+		String strInfo = buffer.toString();
+		strInfo = strInfo.replace('*', ',');
+		
+		StringTokenizer st = new StringTokenizer(strInfo, ",");
+		String[] strInfos = new String[st.countTokens()];
+		
+		for (int i = 0; i < strInfos.length; i ++) {
+			strInfos[i] = st.nextToken().trim();
+			System.out.println(strInfos[i]);
+
+		}
+		
+		//---------------------------------
+		//String 토큰들 DTO 객체에 넣어주기
+		WeatherDTO[] wDto = new WeatherDTO[strInfos.length/4];
+		
+		//strInfos 길이 확인용 출력문
+		System.out.println("strInfos길이 : " + strInfos.length);
+		
+		for(int i = 0; i < strInfos.length; i++) {
+			WeatherDTO dto = new WeatherDTO();
+			wDto[i/4] = dto;
+			dto.setCity(strInfos[i]);
+			dto.setTemp(Integer.parseInt(strInfos[++i]));			
+			dto.setHumidity(Double.parseDouble(strInfos[++i]));
+			dto.setStatus(strInfos[++i]);
+		
+		}
+		
+		return wDto;
+	}
+	
+	
+	public WeatherDTO[] init_old(StringBuffer buffer) {
+		//info의 정보를 파싱해서
+		//WeaterDTO에 담아서
+		//WeaterDTO들을 리턴해보자
+		System.out.println(buffer);
+		String strInfo = buffer.toString();
+		strInfo = strInfo.replace('*', ',');		
+		
+		String[] strInfos = strInfo.split(",");
+						
+		for(int i = 0; i < strInfos.length; i++) {
+						
+			strInfos[i] = strInfos[i].trim();
+			System.out.println(strInfos[i]);
+			
+		}		
+		
+		WeatherDTO[] wDto = new WeatherDTO[strInfos.length/4];
+		
+		//strInfos 길이 확인용 출력문
+		System.out.println("strInfos길이 : " + strInfos.length);
+		
+		for(int i = 0; i < strInfos.length; i++) {
+			WeatherDTO dto = new WeatherDTO();
+			wDto[i/4] = dto;
+			dto.setCity(strInfos[i]);
+			dto.setTemp(Integer.parseInt(strInfos[++i]));			
+			dto.setHumidity(Double.parseDouble(strInfos[++i]));
+			dto.setStatus(strInfos[++i]);
+			
+		}
+		//wDto 확인용 출력문
+//		for(int i = 0; i < wDto.length; i ++) {
+//			System.out.println(wDto[i]);
+//			System.out.println("wDto " + wDto[i].getCity());
+//			
+//		}
+		
+		return wDto;
+		
 	}
 	
 		
 	// 5. 삭제 메서드 : 기존 DTO들에서 검색한 DTO 한개 삭제
 	// 25.01.08 현재, String 비교 if문 조건 충족 후 newDtos[0].getCity()가 바뀌는 버그가 있음
+	// 25.01.08 해결완료 (dtos를 변경하니까 Heap영역에서 받아올 때 의도치 않은 값 받아오는 것 확인, String 변수 하나 만들어서 데이터를 최초에 한번만 받도록 코드 변경)
 	public WeatherDTO[] delete (WeatherDTO[] dtos, WeatherDTO[] newDtos) {
-				
+		
 		int count = 0;
 		String forEqauls = newDtos[0].getCity();
 		//확인용 출력문
@@ -129,48 +211,6 @@ public class WeatherInfo {
 		
 	}
 	
-	
-	public WeatherDTO[] init(StringBuffer buffer) {
-		//info의 정보를 파싱해서
-		//WeaterDTO에 담아서
-		//WeaterDTO들을 리턴해보자
-		System.out.println(buffer);
-		String strInfo = buffer.toString();
-		strInfo = strInfo.replace('*', ',');		
-		
-		String[] strInfos = strInfo.split(",");
-						
-		for(int i = 0; i < strInfos.length; i++) {
-						
-			strInfos[i] = strInfos[i].trim();
-			System.out.println(strInfos[i]);			
-			
-		}		
-		
-		WeatherDTO[] wDto = new WeatherDTO[strInfos.length/4];
-		
-		//strInfos 길이 확인용 출력문
-		System.out.println("strInfos길이 : " + strInfos.length);
-		
-		for(int i = 0; i < strInfos.length; i++) {
-			WeatherDTO dto = new WeatherDTO();
-			wDto[i/4] = dto;
-			dto.setCity(strInfos[i]);
-			dto.setTemp(Integer.parseInt(strInfos[++i]));			
-			dto.setHumidity(Double.parseDouble(strInfos[++i]));
-			dto.setStatus(strInfos[++i]);
-			
-		}
-		//wDto 확인용 출력문
-//		for(int i = 0; i < wDto.length; i ++) {
-//			System.out.println(wDto[i]);
-//			System.out.println("wDto " + wDto[i].getCity());
-//			
-//		}
-		
-		return wDto;
-		
-	}
 	
 	
 	//---------------------------------------

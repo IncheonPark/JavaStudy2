@@ -7,6 +7,7 @@ public class Ex2Main {
 		
 		WeatherController controller = new WeatherController();
 		controller.start();
+		
 
 	}
 
