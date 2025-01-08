@@ -15,7 +15,7 @@ public class TokenMain {
 		// 하나의 문자열을 여러개의 문자열로 분리하는 작업 : Parsing
 		// 분리한 문자열 하나 하나를 Token이라 부른다.
 		
-		String data = "동우-189.82-280.0";
+		String data = "동우-189.82-280.0-인천";
 		StringTokenizer st = new StringTokenizer(data, "-");
 		int count = st.countTokens();
 		System.out.println(count);
