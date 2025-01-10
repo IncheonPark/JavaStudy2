@@ -16,19 +16,20 @@ public class FileOutPut {
 		// sample.text에 추가하기
 		// 항목 사이에 "-" 는 자동으로 들어가게 형식 만들기
 		
-		String sumStr = "";
+		StringBuffer buffer = new StringBuffer();
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 1; i < 4; i++) {
 			System.out.println("도시 기온 습도 날씨 순으로");
 			System.out.println("입력해주세요 " + i + "/4");
-			sumStr = sumStr + sc.next() + "-";
+			buffer.append(sc.next());
+			buffer.append("-");
 		}
-		
+
 		System.out.println("도시 기온 습도 날씨 순으로");
 		System.out.println("입력해주세요 4/4");
-		sumStr = sumStr + sc.next();
+		buffer.append(sc.next());
 				
-		return sumStr;
+		return buffer.toString();
 		
 	}
 	
