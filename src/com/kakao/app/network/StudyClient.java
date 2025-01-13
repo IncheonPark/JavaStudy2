@@ -21,7 +21,7 @@ public class StudyClient {
 		// 내 컴퓨터 IP 주소에 연결해보기
 		// 서버에 접속
 		Scanner sc = new Scanner(System.in);
-		Socket socket = new Socket("192.168.200.64", 8282);
+		Socket socket = new Socket("192.168.200.64", 8282); // 자기 컴퓨터 접속 원할 때, "localhost" 또는 127.0.0.1 사용
 		System.out.println("서버와 접속에 성공했습니다");
 		
 		InputStream is = socket.getInputStream();
