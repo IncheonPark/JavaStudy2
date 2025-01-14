@@ -1,9 +1,11 @@
 package com.kakao.app;
 
+import com.kakao.app.departments.DepartmentController;
 import com.kakao.app.departments.DepartmentDAO;
+import com.kakao.app.front.FrontController;
+import com.kakao.app.locations.LocationController;
 import com.kakao.app.locations.LocationDAO;
 import com.kakao.app.utils.DBconnection;
-import com.kakao.app.utils.Test;
 
 public class AppMain {
 
@@ -15,22 +17,8 @@ public class AppMain {
 //		DBconnection con = new DBconnection();
 //		con.getConnection();
 		
-		DepartmentDAO dao = new DepartmentDAO();
-		LocationDAO dao2 = new LocationDAO();
-		
-		try {
-			dao.getDetail();
-			dao2.getDetail();
-			dao.getList();
-			
-		} catch (Exception e) {			
-			e.printStackTrace();
-			
-		}
-		
-		
-		
-		
+		FrontController frontController = new FrontController();
+		frontController.start();
 		
 		
 		

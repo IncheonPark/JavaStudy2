@@ -8,6 +8,8 @@ import com.kakao.app.utils.DBconnection;
 
 public class DepartmentDAO {
 	
+	
+	
 	// DAO > Data Access Object
 	// DB의 데이터를 조회하거나, 입력, 수정, 삭제 기능
 	
@@ -42,7 +44,9 @@ public class DepartmentDAO {
 	
 	
 	//
-	public void getDetail() throws Exception {
+	public DepartmentDTO getDetail() throws Exception {
+		
+		DepartmentDTO departmentDTO = null;
 		
 		Connection connection = DBconnection.getConnection();
 		
@@ -53,14 +57,20 @@ public class DepartmentDAO {
 		ResultSet rs = st.executeQuery();
 		
 		
-		if(rs.next()) {
-			System.out.println(rs.getString("department_name"));
-		} else {
-			System.out.println("data가 없습니다");
+		while(rs.next()) {
+			//System.out.println(rs.getString("department_name"));
+			departmentDTO = new DepartmentDTO();
+			departmentDTO.setDepartment_id(rs.getInt(1));
+			departmentDTO.setDepartment_name(rs.getString(2));
+			departmentDTO.setManager_id(rs.getInt(3));
+			departmentDTO.setLocation_id(rs.getInt(4));
+			
 		}
 		
 		DBconnection.disConnect(rs, st, connection);
 		
+		
+		return departmentDTO;
 		
 	}
 	
