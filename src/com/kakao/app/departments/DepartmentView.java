@@ -1,5 +1,7 @@
 package com.kakao.app.departments;
 
+import java.util.ArrayList;
+
 public class DepartmentView {
 	
 	public void view (String message) {
@@ -13,6 +15,23 @@ public class DepartmentView {
 		System.out.print(departmentDTO.getManager_id()+"\t");
 		System.out.print(departmentDTO.getLocation_id()+"\t");
 		System.out.println();
+		
+	}
+	
+	public void view(ArrayList<DepartmentDTO> arr) {
+		
+		System.out.println("부서번호 \t 부서명 \t 관리자 \t 지역ID");
+		
+		for (DepartmentDTO departmentDTO : arr) {
+			
+			System.out.print(departmentDTO.getDepartment_id()+"\t");
+			System.out.print(departmentDTO.getDepartment_name()+"\t");
+			System.out.print(departmentDTO.getManager_id()+"\t");
+			System.out.print(departmentDTO.getLocation_id()+"\t");
+			System.out.println();
+			
+		}
+		
 		
 	}
 	

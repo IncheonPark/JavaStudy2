@@ -3,6 +3,7 @@ package com.kakao.app.departments;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.kakao.app.utils.DBconnection;
 
@@ -28,31 +29,46 @@ public class DepartmentDAO {
 	// 7. 연결 해제
 	
 	
-	public void getList() throws Exception {
+	public ArrayList<DepartmentDTO> getList() throws Exception {
 		Connection connection = DBconnection.getConnection();
 		String sql = "select * from departments order by 2 desc";
 		PreparedStatement st = connection.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
+		ArrayList<DepartmentDTO> arr = new ArrayList<>();
 		
 		while(rs.next()) {
-			System.out.println(rs.getString(2));
+//			System.out.println(rs.getInt(1));
+//			System.out.println(rs.getString(2));
+//			System.out.println(rs.getInt(3));
+//			System.out.println(rs.getInt(4));
+			
+			DepartmentDTO departmentDTO = new DepartmentDTO();
+			departmentDTO.setDepartment_id(rs.getInt(1));
+			departmentDTO.setDepartment_name(rs.getString(2));
+			departmentDTO.setManager_id(rs.getInt(3));
+			departmentDTO.setLocation_id(rs.getInt(4));
+			arr.add(departmentDTO);
+			
 		}
 		
 		DBconnection.disConnect(rs, st, connection);
+		
+		return arr;
 		
 	}
 	
 	
 	//
-	public DepartmentDTO getDetail() throws Exception {
+	public DepartmentDTO getDetail(DepartmentDTO departmentDTO2) throws Exception {
 		
 		DepartmentDTO departmentDTO = null;
 		
 		Connection connection = DBconnection.getConnection();
 		
-		String sql = "select * from departments where department_id = 10";
+		String sql = "select * from departments where department_id = ?";
 		
 		PreparedStatement st = connection.prepareStatement(sql);
+		st.setInt(1, departmentDTO2.getDepartment_id());
 		
 		ResultSet rs = st.executeQuery();
 		

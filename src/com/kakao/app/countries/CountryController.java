@@ -1,16 +1,17 @@
 package com.kakao.app.countries;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CountryController {
 	
-	private CountryDAO countryDAO;
 	private CountryView countryView;
+	private CountryService countryService;
 	
 	
 	public CountryController() {
-		countryDAO = new CountryDAO();
 		countryView = new CountryView();
+		countryService = new CountryService();
 	}
 	
 	
@@ -27,10 +28,11 @@ public class CountryController {
 			int select = sc.nextInt();
 			
 			if (select == 1) {
-				countryDAO.getList();
+				ArrayList<CountryDTO> arr = countryService.getList();
+				countryView.view(arr);
 				
 			} else if (select == 2) {
-				CountryDTO countryDTO = countryDAO.getDetail();				
+				CountryDTO countryDTO = countryService.getDetail(sc);
 				
 				if (countryDTO != null) {
 					countryView.view(countryDTO);

@@ -1,16 +1,17 @@
 package com.kakao.app.locations;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LocationController {
 	
-	private LocationDAO locationDAO;
+	private LocationService locationService;
 	private LocationView locationView;
 	
 	
 	public LocationController() {
 		
-		this.locationDAO = new LocationDAO();
+		this.locationService = new LocationService();
 		this.locationView = new LocationView();
 		
 	}
@@ -30,10 +31,11 @@ public class LocationController {
 			int select = sc.nextInt();
 			
 			if (select == 1 ) {
-				locationDAO.getList();
+				ArrayList<LocationDTO> arr = locationService.getList();
+				locationView.view(arr);
 				
 			} else if (select == 2) {
-				LocationDTO locationDTO = locationDAO.getDetail();
+				LocationDTO locationDTO = locationService.getDetail(sc);
 				
 				if (locationDTO != null) {
 					locationView.view(locationDTO);
