@@ -2,6 +2,8 @@ package com.kakao.app.employees;
 
 import java.sql.Date;
 
+import com.kakao.app.departments.DepartmentDTO;
+
 public class EmployeeDTO {
 	
 	
@@ -28,11 +30,17 @@ public class EmployeeDTO {
 	private double commission_pct;
 	private int manager_id;
 	private int department_id;
+	// 1:1 관계
+	private DepartmentDTO departmentDTO;
 	
 	
 	
-	
-	
+	public DepartmentDTO getDepartmentDTO() {
+		return departmentDTO;
+	}
+	public void setDepartmentDTO(DepartmentDTO departmentDTO) {
+		this.departmentDTO = departmentDTO;
+	}
 	public int getEmployee_id() {
 		return employee_id;
 	}

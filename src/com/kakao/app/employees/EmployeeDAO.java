@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kakao.app.departments.DepartmentDTO;
 import com.kakao.app.utils.DBconnection;
 
 public class EmployeeDAO {
@@ -87,6 +88,35 @@ public class EmployeeDAO {
 		return arr;
 		
 	}
+	
+	
+	public void getInfo2() throws Exception {
+		Connection con = DBconnection.getConnection();
+		String sql = "SELECT E.EMPLOYEE_ID, E.SALARY , E.JOB_ID , D.DEPARTMENT_NAME, E.DEPARTMENT_ID "
+				+ "FROM EMPLOYEES E "
+				+ "	JOIN"
+				+ "	DEPARTMENTS D\r\n"
+				+ "	ON E.DEPARTMENT_ID = D.DEPARTMENT_ID"
+				+ " WHERE E.FIRST_NAME = 'Lex'";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		EmployeeDTO employeeDTO = null;
+		if (rs.next()) {
+			employeeDTO = new EmployeeDTO();
+			employeeDTO.setEmployee_id(rs.getInt("Employee_id"));
+			employeeDTO.setSalary(rs.getDouble("Salary"));
+			employeeDTO.setJob_id(rs.getString("Job_id"));
+			employeeDTO.setDepartmentDTO(new DepartmentDTO());
+			employeeDTO.getDepartmentDTO().setDepartment_name("Department_name");
+			
+			
+		}
+		
+		
+	}
+	
 	
 	
 	

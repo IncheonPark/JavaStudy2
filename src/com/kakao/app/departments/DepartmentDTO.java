@@ -1,5 +1,9 @@
 package com.kakao.app.departments;
 
+import java.util.List;
+
+import com.kakao.app.employees.EmployeeDTO;
+
 public class DepartmentDTO {
 	
 	// DTO 선언 시 규칙
@@ -12,6 +16,7 @@ public class DepartmentDTO {
 	private String department_name;
 	private int manager_id;
 	private int location_id;
+	private List<EmployeeDTO> employeeDTOs;
 	
 	
 	
