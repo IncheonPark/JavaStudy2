@@ -29,6 +29,70 @@ public class DepartmentDAO {
 	// 7. 연결 해제
 	
 	
+	//
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		
+		Connection connection = DBconnection.getConnection();
+		
+		String sql = "UPDATE DEPARTMENTS SET MANAGER_ID = ?"
+				+ " WHERE DEPARTMENT_ID = ?";
+		
+		PreparedStatement st = connection.prepareStatement(sql);
+		st.setInt(1, departmentDTO.getManager_id());
+		st.setInt(2, departmentDTO.getDepartment_id());
+		
+		int result = st.executeUpdate();
+		
+		DBconnection.disConnect(st, connection);
+		
+		return result;
+		
+	}
+	
+	
+	// 한개의 부서 삭제
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		
+		Connection connection = DBconnection.getConnection();
+		
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+		
+		PreparedStatement st = connection.prepareStatement(sql);
+		st.setInt(1, departmentDTO.getDepartment_id());
+		
+		int result = st.executeUpdate();
+		
+		DBconnection.disConnect(st, connection);
+		
+		return result;
+		
+	}
+	
+	
+	
+	//
+	public int insert(DepartmentDTO departmentDTO) throws Exception {
+		
+		Connection connection = DBconnection.getConnection();
+		
+		String sql = "INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)"
+				+ " VALUES (DEPARTMENTS_SEQ.NEXTVAL, 'time', '100', '1700')";
+		
+		PreparedStatement st = connection.prepareStatement(sql);
+//		st.setString(1, departmentDTO.getDepartment_name());
+//		st.setInt(2, departmentDTO.getManager_id());
+//		st.setInt(3, departmentDTO.getLocation_id());
+				
+		int result = st.executeUpdate();
+		
+		DBconnection.disConnect(st, connection);
+		
+		return result;
+		
+	}
+	
+	
+	//
 	public ArrayList<DepartmentDTO> getList() throws Exception {
 		Connection connection = DBconnection.getConnection();
 		String sql = "select * from departments order by 2 desc";

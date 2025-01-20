@@ -24,7 +24,8 @@ public class DepartmentController {
 		while(check) {
 			System.out.println("1. 부서 리스트 출력");
 			System.out.println("2. 부서 상세정보 출력");
-			System.out.println("3. 종료");
+			System.out.println("3. 부서 상세정보 입력");
+			System.out.println("4. 종료");
 			
 			int select = sc.nextInt();
 			
@@ -42,6 +43,11 @@ public class DepartmentController {
 					departmentView.view("없는 부서입니다.");
 					
 				}
+				
+			} else if (select == 3) {
+				DepartmentDAO dao = new DepartmentDAO();
+				dao.insert(null);
+				departmentView.view("입력 되었습니다.");
 				
 			} else {
 				check = false;
