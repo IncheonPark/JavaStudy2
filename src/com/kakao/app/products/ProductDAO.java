@@ -20,7 +20,7 @@ public class ProductDAO {
 		Connection con = DBConnection.getConnection();
 		
 		String sql = "INSERT INTO PRODUCTS "
-				+ " VALUES (PRODUCTNUM_SEQ.NEXTVAL, '일반예금', 1.25, SYSDATE, '저렴한 이자 상품입니다.' )";
+				+ " VALUES (PRODUCTNUM_SEQ.NEXTVAL, ?, ?, ?, ? )";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, dto.getProductName());
