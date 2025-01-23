@@ -1,11 +1,19 @@
 package com.kakao.app.zTest;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.kakao.app.users.UserDAO;
+import com.kakao.app.users.UserDTO;
 import com.kakao.app.utils.DBConnection;
 
 public class DBConnectionTest {
 	
+	private UserDAO dao;
+	
+	public DBConnectionTest() {
+		dao = new UserDAO();
+	}
 	
 	public void getConnectionTest() throws Exception {
 		
@@ -20,8 +28,10 @@ public class DBConnectionTest {
 		}
 		
 		
-		
 	}
+	
+	
+	
 	
 
 }
